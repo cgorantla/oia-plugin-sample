@@ -18,7 +18,6 @@ dist/
 tmp/
 target
 bin/
-dependency-reduced-pom.xml
 
 # Editors
 .idea
@@ -28,4 +27,3 @@ dependency-reduced-pom.xml
 java/bin/
 *.swp
 *.iml
-
