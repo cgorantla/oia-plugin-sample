@@ -18,7 +18,7 @@
     <junit.version>4.13.1</junit.version>
     <osgi.version>6.0.0</osgi.version>
     <osgi.compendium.version>5.0.0</osgi.compendium.version>
-    <opennms.api.version>0.6.2-SNAPSHOT</opennms.api.version>
+    <opennms.api.version>0.6.0</opennms.api.version>
     <karaf.version>4.2.11</karaf.version>
     <slf4j-api.version>1.7.25</slf4j-api.version>
   </properties>

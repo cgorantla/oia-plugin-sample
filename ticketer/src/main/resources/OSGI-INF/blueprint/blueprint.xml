@@ -9,7 +9,7 @@
     <service-properties>
       <entry key="registration.export" value="true" />
     </service-properties>
-    <bean class="org.opennms.plugins.sample.ticketer.SampleTicketer"/>
+    <bean class="org.opennms.plugins.ticketer.InMemoryTicketingPlugin"/>
   </service>
 
 

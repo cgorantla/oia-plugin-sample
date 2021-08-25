@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<features name="openmms-plugins-pris-features" xmlns="http://karaf.apache.org/xmlns/features/v1.4.0">
+<features name="openmms-plugins-sample-ticketer" xmlns="http://karaf.apache.org/xmlns/features/v1.4.0">
 
   <repository>mvn:org.opennms.integration.api/karaf-features/${opennms.api.version}/xml</repository>
 
@@ -7,6 +7,7 @@
     <feature dependency="true">aries-blueprint</feature>
     <feature version="${opennms.api.version}" dependency="true">opennms-integration-api</feature>
     <bundle>mvn:org.opennms.plugins.sample/org.opennms.plugins.sample.ticketer/${project.version}</bundle>
+    <feature>shell</feature>
   </feature>
 
 </features>

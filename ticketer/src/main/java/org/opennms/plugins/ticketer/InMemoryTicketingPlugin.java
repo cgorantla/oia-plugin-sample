@@ -26,31 +26,46 @@
  *     http://www.opennms.com/
  *******************************************************************************/
 
-package org.opennms.plugins.sample.ticketer;
+package org.opennms.plugins.ticketer;
 
 import org.opennms.integration.api.v1.ticketing.Ticket;
 import org.opennms.integration.api.v1.ticketing.TicketingPlugin;
 import org.opennms.integration.api.v1.ticketing.immutables.ImmutableTicket;
 
-public class SampleTicketer implements TicketingPlugin {
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
-    public static final String TICKET_ID = "Sample-Ticket-ID";
+public class InMemoryTicketingPlugin implements TicketingPlugin {
 
-    /**
-     * Returns the Ticket detail given a ticket id.
-     *
-     * @param ticketId Ticket id that is already registered with Plugin.
-     * @return Ticket with all details filled.
-     */
+    private final AtomicInteger ticketIdGenerator = new AtomicInteger(1);
+    private Map<String, Ticket> ticketMap = new ConcurrentHashMap<>();
+
     @Override
     public Ticket get(String ticketId) {
-
-        return ImmutableTicket.newBuilder().setId(ticketId).build();
+        if (ticketId != null) {
+            return ticketMap.get(ticketId);
+        }
+        return null;
     }
 
     @Override
     public String saveOrUpdate(Ticket ticket) {
+        String ticketId = ticket.getId();
+        if (ticketId == null) {
+            ticketId = Integer.toString(ticketIdGenerator.get());
+            ImmutableTicket immutableTicket = ImmutableTicket.newBuilderFrom(ticket).setId(ticketId)
+                    .setSummary("Inmemory-ticketer-plugin")
+                    .setDetails("Demo")
+                    .build();
+            ticketMap.put(ticketId, immutableTicket);
+        } else {
+            ImmutableTicket immutableTicket = ImmutableTicket.newBuilderFrom(ticket)
+                    .setSummary("Inmemory-ticketer-plugin")
+                    .setDetails("Demo").build();
+            ticketMap.put(ticketId, immutableTicket);
+        }
 
-        return TICKET_ID;
+        return ticketId;
     }
 }
