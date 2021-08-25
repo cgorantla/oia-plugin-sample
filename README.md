@@ -34,5 +34,6 @@ cp target/opennms-sample-plugin.kar ../../opennms/target/opennms/deploy/
 
 ### Create template from archetype
 
+```
 mvn archetype:generate -B -DarchetypeGroupId=org.opennms.integration.api -DarchetypeArtifactId=example-kar-plugin -DarchetypeVersion=0.6.0 -DgroupId=org.opennms -DartifactId=sample-ticketer -Dversion=1.0.0-SNAPSHOT -Dpackage=org.opennms.ticketer -DpluginId=sample-ticketer -DpluginName="Sample Ticketer"
-
+```
